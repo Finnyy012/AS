@@ -46,7 +46,7 @@ def value_iteration(max_iter, reward, actions, terminal, γ, θ):
     return value
 
 
-reward = np.array([[-1, -1, -1, 40],
+reward = np.array([[  -1,  -1, -1,   40],
                    [  -1,  -1, -10, -10],
                    [  -1,  -1,  -1,  -1],
                    [  10,  -2,  -1,  -1]])
