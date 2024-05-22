@@ -29,7 +29,7 @@ actions = [lambda x: np.pad(x,((0,0),(1,0)), mode='edge')[ :  , :-1],
            lambda x: np.pad(x,((1,0),(0,0)), mode='edge')[ :-1, :  ],
            lambda x: np.pad(x,((0,1),(0,0)), mode='edge')[1:  , :  ]]
 
-action_symbols = np.array(['<','>','^','v','X'])
+action_symbols = np.array(['←','→','↑','↓','⊗'])
 
 max_iter = 10
 theta = .01
