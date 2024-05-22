@@ -42,8 +42,18 @@ def value_iteration(max_iter, reward, actions, terminal, γ, θ):
                 )
         Δ = np.max(np.abs(value[k]-value[k+1]))
         if Δ < θ:
-            return value[:k]
+            return value[:k+1]
     return value
+
+
+def policy(value, reward, actions):
+    res = np.zeros(value.shape)
+    for i in range(res.shape[0]):
+        for j in range(res.shape[1]):
+            r = []
+            for a in actions:
+                r.append(reward[i+a[0]][j+a[1]] + value[i+a[0]][j+a[1]])
+
 
 
 reward = np.array([[  -1,  -1, -1,   40],
