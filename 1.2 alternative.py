@@ -10,9 +10,12 @@ def value_iteration(max_iter, actions, reward, terminal, gamma, theta):
     return values
 
 
-def policy(value, reward, gamma, terminal, symbols):
-    pi = np.argmax([a(reward) + gamma * a(value) for a in actions], axis=0)
-    return np.vectorize(lambda x: symbols[x])((pi + 1) * terminal.astype(int) - 1)
+def policy(value, reward, gamma, terminal):
+    return np.argmax([a(reward) + gamma * a(value) for a in actions], axis=0) * terminal.astype(int)
+
+
+def prettify_policy(pi, symbols, terminal):
+    return np.vectorize(lambda x: symbols[x])(pi + terminal.astype(int) - 1)
 
 
 reward = np.array([[  -1,  -1, -1,   40],
@@ -35,7 +38,10 @@ max_iter = 10
 theta = .01
 gamma = 1
 values = value_iteration(max_iter, actions, reward, terminal, gamma, theta)
+pi = policy(values[values.shape[0]-1], reward, gamma, terminal.astype(int))
 
 print(values)
 print()
-print(policy(values[values.shape[0]-1], reward, gamma, terminal.astype(int), action_symbols))
+print(pi)
+print()
+print(prettify_policy(pi, action_symbols, terminal))
